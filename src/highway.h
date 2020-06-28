@@ -26,8 +26,8 @@ public:
 	bool visualize_radar = true;
 	bool visualize_pcd = false;
 	// Predict path in the future using UKF
-	double projectedTime = 0;
-	int projectedSteps = 0;
+	double projectedTime = 2;
+	int projectedSteps = 6;
 	// --------------------------------
 
 	Highway(pcl::visualization::PCLVisualizer::Ptr& viewer)
@@ -133,12 +133,14 @@ public:
 				tools.lidarSense(traffic[i], viewer, timestamp, visualize_lidar);
 				tools.radarSense(traffic[i], egoCar, viewer, timestamp, visualize_radar);
 				tools.ukfResults(traffic[i],viewer, projectedTime, projectedSteps);
+				
 				VectorXd estimate(4);
 				double v  = traffic[i].ukf.x_(2);
     			double yaw = traffic[i].ukf.x_(3);
     			double v1 = cos(yaw)*v;
     			double v2 = sin(yaw)*v;
 				estimate << traffic[i].ukf.x_[0], traffic[i].ukf.x_[1], v1, v2;
+				
 				tools.estimations.push_back(estimate);
 	
 			}

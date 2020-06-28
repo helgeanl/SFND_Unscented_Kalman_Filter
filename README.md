@@ -74,3 +74,23 @@ and performing clustering. This is similar to what was done in Sensor Fusion Lid
 This information is only accessible by people who are already enrolled in Sensor Fusion. 
 If you are enrolled, see the project page in the classroom
 for instructions and the project rubric.
+
+
+
+# Results
+
+From the figures below we can see that the estimator perform quite well, with a low RMS error compared to ground truth, and NIS values mostly within the 95th percentile.
+
+![UKF](media/ukf_highway_filtered.png)
+**Fig 1:** Visualization of the sensor fusion of RADAR and LiDAR, with low RMSE.
+
+![NIS](media/nis.png)
+
+**Fig. 2:** Normalized innovation squared for LiDAR and RADAR. Black lines represent the 95th percentile. The covariance is a bit underestimated, but is mostly within the 95th percentile.
+
+![LiDAR](media/only_lidar.png)
+**Fig. 3:** Similar visulization as above, using only LiDAR. Still good results, but worse then the combined fusion.
+
+![RADAR](media/only_radar.png)
+**Fig. 4:** Estimation using only RADAR, with significantly worse performance.
+
